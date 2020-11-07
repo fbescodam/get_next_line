@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/07 17:19:45 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/07 18:11:45 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/07 19:41:58 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,14 @@ void	ft_bzero(void *s, size_t n)
 		s++;
 		n--;
 	}
+}
+
+size_t		ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

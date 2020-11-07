@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 16:16:54 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/04 16:57:53 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/07 17:50:57 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int argc, char **argv)
 		{
 			while (get_next_line(fd, line))
 			{
-				printf("%s\n", *line);
+				printf("[LINE]%s\n", *line);
 			}
 			if (*line)
 				free(*line);

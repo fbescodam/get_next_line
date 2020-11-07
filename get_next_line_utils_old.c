@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/07 17:19:45 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/07 18:11:45 by fbes          ########   odam.nl         */
+/*   Created: 2020/11/04 16:16:40 by fbes          #+#    #+#                 */
+/*   Updated: 2020/11/04 17:13:54 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		n--;
 	}
 	return (dest);
-}
-
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
-{
-	char		*dest_cpy;
-	const char	*src_cpy;
-
-	dest_cpy = dest;
-	src_cpy = src;
-	while (n > 0)
-	{
-		*dest_cpy = *src_cpy;
-		dest_cpy++;
-		if (*src_cpy == (char)c)
-			return ((void *)dest_cpy);
-		src_cpy++;
-		n--;
-	}
-	return (NULL);
 }
 
 void	ft_bzero(void *s, size_t n)

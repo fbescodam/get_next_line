@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 16:16:38 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/04 16:54:14 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/07 17:59:01 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int		get_next_line(int fd, char **line);
 #endif
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 30
 #endif

@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 16:16:54 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 19:50:20 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 21:23:21 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int		main(int argc, char **argv)
 		{
 			result = get_next_line(fd, line);
 			if (result > -1)
-				printf("%s\n", *line);
+				printf("[LINE]%s\n", *line);
 			else if (result < 0)
-				printf("An error occurred\n");
+				printf("An error occurred; get_next_line returned -1\n");
 		}
 		if (*line)
 			free(*line);

@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 18:34:00 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 19:36:53 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		get_next_line(int fd, char **line)
 	size_t			line_length;
 	int				handle_result;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (-1);
 	if (read_bytes == 0 && buff)
 	{
@@ -77,8 +77,9 @@ int		get_next_line(int fd, char **line)
 			break ;
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 	}
-	if (*line)
-		(*line)[line_length] = '\0';
+	if (!*line)
+		*line = malloc(1);
+	(*line)[line_length] = '\0';
 	if (read_bytes < 0 || handle_result < 0)
 	{
 		free(buff);

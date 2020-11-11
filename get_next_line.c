@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 18:23:17 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 18:00:23 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,13 @@ int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, 
 	}
 }
 
-int		loop_read(int fd, ssize_t read_bytes, char **line, void *buff)
-{
-	size_t			line_length;
-	int				handle_result;
-	static size_t	start;
-
-	line_length = 0;
-	while (read_bytes > 0)
-	{
-		handle_result = handle_buffer(line, &line_length, buff, &start, read_bytes);
-		if (handle_result > 0)
-			return (1);
-		else if (handle_result < 0)
-			break ;
-		read_bytes = read(fd, buff, BUFFER_SIZE);
-	}
-	(*line)[line_length] = '\0';
-	if (read_bytes < 0 || handle_result < 0)
-	{
-		free(buff);
-		return (-1);
-	}
-	return (0);
-}
-
 int		get_next_line(int fd, char **line)
 {
 	static void		*buff;
+	static size_t	start;
 	static ssize_t	read_bytes;
+	size_t			line_length;
+	int				handle_result;
 
 	if (fd < 0)
 		return (-1);
@@ -97,5 +75,21 @@ int		get_next_line(int fd, char **line)
 			return (-1);
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 	}
-	return (loop_read(fd, read_bytes, line, buff));
+	line_length = 0;
+	while (read_bytes > 0)
+	{
+		handle_result = handle_buffer(line, &line_length, buff, &start, read_bytes);
+		if (handle_result > 0)
+			return (1);
+		else if (handle_result < 0)
+			break ;
+		read_bytes = read(fd, buff, BUFFER_SIZE);
+	}
+	(*line)[line_length] = '\0';
+	if (read_bytes < 0 || handle_result < 0)
+	{
+		free(buff);
+		return (-1);
+	}
+	return (1);
 }

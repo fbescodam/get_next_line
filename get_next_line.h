@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 16:16:38 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/07 20:09:33 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 15:54:47 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-void	*ft_memchr(const void *s, int c, size_t n);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	ft_bzero(void *s, size_t n);
-size_t	ft_strlen(const char *s);
-int		get_next_line(int fd, char **line);
+void		ft_bzero(void *s, size_t n);
+size_t		ft_strlcpy(char *dest, const char *src, size_t size);
+size_t		ft_strllen(const char *s, size_t maxlen);
+void		replace_newlines(char *buff);
+int			get_next_line(int fd, char **line);
 
 #endif
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 20
+# define BUFFER_SIZE 32
 #endif

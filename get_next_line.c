@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 17:24:30 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 17:41:59 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, 
 	if (bytes_to_copy > 0)
 		ft_strlcpy(temp + *line_length, buff + *start, bytes_to_copy);
 	else
-		temp[0] = '\0';
+		temp[*line_length] = '\0';
 	*line = temp;
 	*line_length += bytes_to_copy;
 	if (bytes_to_copy < read_bytes - *start)
@@ -62,10 +62,15 @@ int		get_next_line(int fd, char **line)
 {
 	static void		*buff;
 	static size_t	start;
-	ssize_t			read_bytes;
+	static ssize_t	read_bytes;
 	size_t			line_length;
 	int				handle_result;
 
+	if (read_bytes == 0 && buff)
+	{
+		free(buff);
+		return (0);
+	}
 	if (!buff)
 	{
 		buff = malloc(BUFFER_SIZE);
@@ -82,11 +87,14 @@ int		get_next_line(int fd, char **line)
 		if (handle_result > 0)
 			return (1);
 		else if (handle_result < 0)
-			return (-1);
+			break;
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 	}
-	free(buff);
-	if (read_bytes < 0)
+	(*line)[line_length] = '\0';
+	if (read_bytes < 0 || handle_result < 0)
+	{
+		free(buff);
 		return (-1);
-	return (0);
+	}
+	return (1);
 }

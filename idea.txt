@@ -1,8 +1,0 @@
-read buffer if no static buffer
-if static buffer, read that buffer, starting from the position of static void pointer to last newline
-replace all \n in buffer with \0
-copy buffer to mega buffer, stopping at \0 (strcpy)
-if strcpy return < BUFFER_SIZE, a newline has been found;
-	set static void pointer or something to the position of that newline, return 1
-else read next buffer
-repeat

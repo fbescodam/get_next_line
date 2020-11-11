@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 17:58:34 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 18:00:23 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int		get_next_line(int fd, char **line)
 	size_t			line_length;
 	int				handle_result;
 
+	if (fd < 0)
+		return (-1);
 	if (read_bytes == 0 && buff)
 	{
 		free(buff);

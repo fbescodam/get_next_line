@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:33:10 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 17:57:29 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 18:04:25 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_bzero(void *s, size_t n)
 	}
 }
 
-size_t		ft_strlcpy_nl(char *dest, const char *src, size_t size)
+void		ft_strlcpy_nl(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 
@@ -35,7 +35,6 @@ size_t		ft_strlcpy_nl(char *dest, const char *src, size_t size)
 			i++;
 		}
 	}
-	return (1);
 }
 
 size_t		ft_strlen_nl(const char *s, size_t maxlen)

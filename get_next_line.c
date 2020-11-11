@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 18:00:23 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 18:27:17 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, 
 	char			*temp;
 	size_t			bytes_to_copy;
 
-	if (*start > read_bytes)
-	{
-		*start = 0;
-		return (read_bytes);
-	}
 	bytes_to_copy = ft_strlen_nl(buff + *start, read_bytes - *start);
 	temp = (char *)malloc((*line_length + bytes_to_copy + 1) * sizeof(char));
 	if (!temp)
@@ -43,12 +38,9 @@ int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, 
 		*start += bytes_to_copy + 1;
 		return (1);
 	}
-	else
-	{
-		ft_bzero(buff, BUFFER_SIZE);
-		*start = 0;
-		return (0);
-	}
+	ft_bzero(buff, BUFFER_SIZE);
+	*start = 0;
+	return (0);
 }
 
 int		get_next_line(int fd, char **line)

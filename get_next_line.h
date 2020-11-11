@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/04 16:16:38 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 17:31:58 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 17:57:36 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 # include <fcntl.h>
 
 void		ft_bzero(void *s, size_t n);
-size_t		ft_strlcpy(char *dest, const char *src, size_t size);
-void		*ft_memcpy(void *dest, const void *src, size_t n);
-size_t		ft_strllen(const char *s, size_t maxlen);
-void		replace_newlines(char *buff);
+size_t		ft_strlcpy_nl(char *dest, const char *src, size_t size);
+size_t		ft_strlen_nl(const char *s, size_t maxlen);
 int			get_next_line(int fd, char **line);
 
 #endif

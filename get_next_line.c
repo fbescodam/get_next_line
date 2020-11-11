@@ -6,40 +6,33 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 17:41:59 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/11 17:58:34 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, size_t read_bytes)
 {
 	char			*temp;
 	size_t			bytes_to_copy;
 
-	//printf("start: %ld\n", *start);
 	if (*start > read_bytes)
 	{
 		*start = 0;
 		return (read_bytes);
 	}
-	bytes_to_copy = ft_strllen(buff + *start, read_bytes - *start);
-	//printf("bytes_to_copy: %ld\n", bytes_to_copy);
-	//printf("line_length: %ld\n", *line_length);
+	bytes_to_copy = ft_strlen_nl(buff + *start, read_bytes - *start);
 	temp = (char *)malloc((*line_length + bytes_to_copy + 1) * sizeof(char));
 	if (!temp)
 		return (-1);
 	if (*line && line_length > 0)
 	{
-		//printf("now copying old string\n");
-		//ft_strlcpy(temp, *line, *line_length);
-		ft_memcpy(temp, *line, *line_length);
+		ft_strlcpy_nl(temp, *line, *line_length);
 		free(*line);
 	}
-	//printf("now copying buffer\n");
 	if (bytes_to_copy > 0)
-		ft_strlcpy(temp + *line_length, buff + *start, bytes_to_copy);
+		ft_strlcpy_nl(temp + *line_length, buff + *start, bytes_to_copy);
 	else
 		temp[*line_length] = '\0';
 	*line = temp;
@@ -87,7 +80,7 @@ int		get_next_line(int fd, char **line)
 		if (handle_result > 0)
 			return (1);
 		else if (handle_result < 0)
-			break;
+			break ;
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 	}
 	(*line)[line_length] = '\0';

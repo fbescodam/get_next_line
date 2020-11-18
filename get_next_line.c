@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:30:52 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 19:52:02 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/18 16:51:45 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, 
 	size_t			bytes_to_copy;
 
 	bytes_to_copy = ft_strlen_nl(buff + *start, read_bytes - *start);
-	temp = (char *)malloc((*line_length + bytes_to_copy + 1) * sizeof(char));
+	temp = (char *)ft_calloc(sizeof(char), (*line_length + bytes_to_copy + 1));
 	if (!temp)
 		return (-1);
 	if (*line && line_length > 0)
@@ -28,13 +28,10 @@ int		handle_buffer(char **line, size_t *line_length, char *buff, size_t *start, 
 	}
 	if (bytes_to_copy > 0)
 		ft_strlcpy_nl(temp + *line_length, buff + *start, bytes_to_copy);
-	else
-		temp[*line_length] = '\0';
 	*line = temp;
 	*line_length += bytes_to_copy;
 	if (bytes_to_copy < read_bytes - *start)
 	{
-		temp[*line_length] = '\0';
 		*start += bytes_to_copy + 1;
 		return (1);
 	}
@@ -51,18 +48,17 @@ int		get_next_line(int fd, char **line)
 	size_t			line_length;
 	int				handle_result;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || line == NULL)
 		return (-1);
 	if (!buff)
 	{
-		buff = malloc(BUFFER_SIZE);
-		if (buff)
-			ft_bzero(buff, BUFFER_SIZE);
-		else
+		buff = ft_calloc(sizeof(char), BUFFER_SIZE);
+		if (!buff)
 			return (-1);
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 	}
 	line_length = 0;
+	*line = NULL;
 	while (read_bytes > 0)
 	{
 		handle_result = handle_buffer(line, &line_length, buff, &start, read_bytes);
@@ -73,7 +69,7 @@ int		get_next_line(int fd, char **line)
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 	}
 	if (!*line)
-		*line = malloc(1);
+		*line = ft_calloc(sizeof(char), 1);
 	(*line)[line_length] = '\0';
 	free(buff);
 	if (read_bytes < 0 || handle_result < 0)

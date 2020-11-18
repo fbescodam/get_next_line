@@ -6,7 +6,7 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:33:10 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/11 18:04:25 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/18 16:22:10 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ void		ft_bzero(void *s, size_t n)
 		s++;
 		n--;
 	}
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void			*ptr;
+	size_t			size_to_malloc;
+
+	if (nmemb == 0 || size == 0)
+		return (malloc(1));
+	size_to_malloc = size * nmemb;
+	ptr = malloc(size_to_malloc);
+	if (ptr)
+		ft_bzero(ptr, size_to_malloc);
+	return (ptr);
 }
 
 void		ft_strlcpy_nl(char *dest, const char *src, size_t size)

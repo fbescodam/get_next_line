@@ -6,13 +6,13 @@
 /*   By: fbes <fbes@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 15:33:10 by fbes          #+#    #+#                 */
-/*   Updated: 2020/11/18 16:22:10 by fbes          ########   odam.nl         */
+/*   Updated: 2020/11/18 16:54:56 by fbes          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void		ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	while (n > 0)
 	{
@@ -36,7 +36,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (ptr);
 }
 
-void		ft_strlcpy_nl(char *dest, const char *src, size_t size)
+void	ft_strlcpy_nl(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 
@@ -51,7 +51,7 @@ void		ft_strlcpy_nl(char *dest, const char *src, size_t size)
 	}
 }
 
-size_t		ft_strlen_nl(const char *s, size_t maxlen)
+size_t	ft_strlen_nl(const char *s, size_t maxlen)
 {
 	size_t	i;
 
